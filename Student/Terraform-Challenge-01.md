@@ -28,7 +28,7 @@ Using the az cli, prepare an Azure storage account which will hold your terrafor
 Author a Terraform manifest that creates an Azure Storage Account, and returns the required outputs.  The manifest(s):
 
 - Must save Terraform state in the storage account created in part 1
-- Must take inputs 1) `location` and 2) a unique storage account name
+- Must take inputs 1) `location` (eg, Azure region) 2) Resource group name 3) unique storage account name
 - Must supply the required inputs via a _tfvars_ file
 - The output must return the storage account id
 

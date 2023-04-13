@@ -5,6 +5,9 @@ terraform {
       source  = "hashicorp/azurerm"
       version = "=3.0.0"
     }
+    random = {
+      source = "hashicorp/random"
+    }
   }
   backend "azurerm" {
     resource_group_name  = "tfstate-lnc01"
@@ -19,7 +22,11 @@ provider "azurerm" {
   features {}
 }
 
+
 # Variables
+variable "rgname" {
+  type = string
+}
 variable "location" {
   type = string
 }
@@ -27,21 +34,12 @@ variable "saname" {
   type = string
 }
 
-# Resources
-resource "azurerm_resource_group" "ch01rg" {
-  name     = "ch01rg"
-  location = var.location
+variable "geoRedundancy" {
+  type    = bool
+  default = false
 }
 
-resource "azurerm_storage_account" "ch1sa" {
-  name                     = var.saname
-  resource_group_name      = azurerm_resource_group.ch01rg.name
-  location                 = azurerm_resource_group.ch01rg.location
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
-}
-
-# Outputs
-output "storageid" {
-  value = azurerm_storage_account.ch1sa.id
+variable "containername" {
+  type    = string
+  default = "mycontainer"
 }

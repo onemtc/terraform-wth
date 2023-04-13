@@ -29,5 +29,6 @@ backend \"azurerm\" {
 terraform init
 terraform validate
 terraform plan
+terraform output storageid
 
 
