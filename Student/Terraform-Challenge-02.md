@@ -13,7 +13,7 @@ In this challenge you will continue to modify and enhance the terraform manifest
 
 ## Challenges
 
-**Challenge**: Refactor your code so that your Terraform configuration blocks (eg, terraform{}, provider "azurerm" {}, and variables) are in one file (eg, main.tf), and your Azure resources are in a separate file (eg, azure.tf).  _This is a general best practice for clarity_
+**Challenge**: Refactor your code so that your Terraform configuration blocks (eg, terraform{}, provider "azurerm" {}, and variables) are in one file (eg, main.tf), and your Azure resources are in a separate file (eg, `azure.tf`), and outputs are in a third file (eg `outputs.tf`).  _This is a general best practice for clarity_
 
 **Challenge**: Use Terraform's [Random provider](https://registry.terraform.io/providers/hashicorp/random/latest/docs) to generate a four character suffix, and append this suffix to your storage account name (to ensure uniqueness).  _(eg if your storage account name was `mystorageaccount`, the new storage account name would be (example) `mystorageaccountX5q3`)_
 
@@ -36,5 +36,6 @@ In this challenge you will continue to modify and enhance the terraform manifest
 
 ## Learning Resources
 
-+ [String functions for Bicep](https://learn.microsoft.com/azure/azure-resource-manager/bicep/bicep-functions-string)
-+ [Parameter files](https://learn.microsoft.com/azure/azure-resource-manager/bicep/parameter-files)
++ [Azurerm Documentation (from Hashicorp)](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)
++ [Random provider](https://registry.terraform.io/providers/hashicorp/random/latest/docs)
++ [Conditional operator](https://developer.hashicorp.com/terraform/language/expressions/conditionals)

@@ -43,3 +43,4 @@ variable "containername" {
   type    = string
   default = "mycontainer"
 }
+

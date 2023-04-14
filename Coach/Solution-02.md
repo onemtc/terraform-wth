@@ -6,9 +6,4 @@
 
 Challenge 2 notes coming soon...
 
-## Learning Resources
-
-Learn how to "fish" for ARM template resource syntax:
-
-- [Bicep expressions](https://github.com/Azure/bicep/blob/main/docs/tutorial/03-using-expressions.md)
-- [Referencing resources](https://github.com/Azure/bicep/blob/main/docs/tutorial/04-using-symbolic-resource-name.md)
+See solution example and `challenge-02.sh`

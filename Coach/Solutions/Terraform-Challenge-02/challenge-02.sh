@@ -4,6 +4,6 @@
 terraform init
 terraform validate
 terraform plan
-terraform output storageid
+terraform output 
 
 
