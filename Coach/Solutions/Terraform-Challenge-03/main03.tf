@@ -24,3 +24,22 @@ resource "azurerm_storage_container" "thiscontainer" {
   container_access_type = "blob"
 }
 
+resource "azurerm_storage_container" "container01" {
+  count = 3
+
+  name                  = "${var.containername}-${count.index}"
+  storage_account_name  = azurerm_storage_account.this.name
+  container_access_type = "blob"
+}
+
+variable "containersuffixlist" {
+  type = list
+  default = ["a", "b", "c"]
+}
+
+resource "azurerm_storage_container" "container02" {
+  for_each = toset(var.containersuffixlist)
+  name                  = "${var.containername}-${each.key}"
+  storage_account_name  = azurerm_storage_account.this.name
+  container_access_type = "blob"
+}

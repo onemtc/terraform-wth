@@ -4,10 +4,6 @@
 
 ## Notes & Guidance
 
-In challenge 3, the student is advancing their BICEP skills.  In this challenge, they will
-add containers to the storage account creates in challenge 2.  This challenge does not
-use the parameter file, but that could be a stretch for the student.
+Challenge 3 notes coming soon...
 
-## Learning Resources
-
-- [Advanced resource declarations](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/resource-declaration?tabs=azure-powershell)
+See solution example and `challenge-03.sh`

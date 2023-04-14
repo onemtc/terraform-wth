@@ -1,46 +1,26 @@
-# Assumption is you will be using az cli authentication
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "=3.0.0"
-    }
-    random = {
-      source = "hashicorp/random"
-    }
-  }
-  backend "azurerm" {
-    resource_group_name  = "tfstate-lnc01"
-    storage_account_name = "tfstatelnc01"
-    container_name       = "tfstate"
-    key                  = "terraform.tfstate"
-  }
+# Resources
+resource "random_string" "suffix" {
+  length  = 4
+  special = false
+  upper   = false
 }
 
-# Configure the Microsoft Azure Provider
-provider "azurerm" {
-  features {}
+resource "azurerm_resource_group" "tfchallenge" {
+  name     = var.rgname
+  location = var.location
 }
 
-
-# Variables
-variable "rgname" {
-  type = string
-}
-variable "location" {
-  type = string
-}
-variable "saname" {
-  type = string
+resource "azurerm_storage_account" "this" {
+  name                     = "${var.saname}${random_string.suffix.result}"
+  resource_group_name      = azurerm_resource_group.tfchallenge.name
+  location                 = azurerm_resource_group.tfchallenge.location
+  account_tier             = "Standard"
+  account_replication_type = var.geoRedundancy ? "GRS" : "LRS"
 }
 
-variable "geoRedundancy" {
-  type    = bool
-  default = false
-}
-
-variable "containername" {
-  type    = string
-  default = "mycontainer"
+resource "azurerm_storage_container" "thiscontainer" {
+  name                  = var.containername
+  storage_account_name  = azurerm_storage_account.this.name
+  container_access_type = "blob"
 }
 
