@@ -1,6 +1,6 @@
 # Challenge 4 - Secret Values with Azure Key Vault
 
-[< Previous Challenge](./Bicep-Challenge-03.md) - [Home](../README.md) - [Next Challenge >](./Bicep-Challenge-05.md)
+[< Previous Challenge](./Terraform-Challenge-03.md) - [Home](../README.md) - [Next Challenge >](./Terraform-Challenge-05.md)
 
 ## Introduction
 
@@ -14,6 +14,23 @@ It is a BEST practice to store secret values (such as passwords) in the Azure Ke
 
 In this challenge, you will create an Azure Key Vault and store a secret in it.  Then you will create a Bicep template & parameters file that reads from the key vault.
 
+## Challenges
+
++ Create an Azure Key Vault using [azurerm_key_vault](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault)
+  + Note:  Keyvaults require a unique name in Azure.  Append your random suffix to the Keyvault name to ensure your name is unique. 
++ Using the [azurerm_key_vault_key](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_key) resource provider, create a key called `mysecret` with a [random password](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) and store it in the keyvault.
++ Explore the terraform state using the `terraform state list` and `terraform state show` commands to view the secret that was created
+  + Discuss with your coach: What are the implications of the secret being stored in Terraform's state file?
+
+
+Suggested reading:  
+  + [Create an Azure key vault and key using Terraform](https://learn.microsoft.com/en-us/azure/key-vault/keys/quick-create-terraform?tabs=azure-cli)
+
+
+
+
+
+------------------------------------------------------------------
 ## Setup
 
 It can be tricky to deploy an Azure Key Vault. In the interest of time, we are providing a Bicep template for you to deploy.

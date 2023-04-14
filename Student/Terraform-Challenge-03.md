@@ -19,9 +19,6 @@ The goals for this challenge include understanding:
 - Create a variable called `containersuffixlist` of type _list_ and have it contain the values `a`, `b`, and `c`
 - Use the [for_each](https://developer.hashicorp.com/terraform/language/meta-arguments/for_each) operator in conjunction with a second blob container resource definition to create three more containers with the names _prefix_-a, _prefix_-b, and _prefix_-c.
 
-
-The ep file will take an array of strings representing container names as an input and use a `for loop` to create containers in the list within the existing storage account.
-
 ## Success Criteria
 
 1. Use the Azure portal or Azure cli to verify new containers were added to the storage account.
