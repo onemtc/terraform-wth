@@ -1,8 +1,12 @@
 data "azurerm_client_config" "current" {}
+data "azuread_client_config" "current" {}
 
-// yes, the following is a hack
-data "external" "user" {
-  program = ["az", "ad", "signed-in-user", "show", "--query", "{id:id}", "--output", "json"]
+output "aadobject_id" {
+  value = data.azuread_client_config.current.object_id
+}
+
+output "azrmobject_id" {
+  value = data.azurerm_client_config.current.object_id
 }
 
 variable "kv_sku_name" {
@@ -14,7 +18,7 @@ variable "kv_sku_name" {
 variable "secret_permissions" {
   type        = list(string)
   description = "List of secret permissions."
-  default     = ["Set", "List"]
+  default     = ["Set", "Get", "List"]
 }
 
 resource "azurerm_key_vault" "vault" {
@@ -31,9 +35,22 @@ resource "azurerm_key_vault" "vault" {
   }
 
   access_policy {
-    tenant_id          = data.azurerm_client_config.current.tenant_id
-    object_id          = data.external.user.result.id
-    secret_permissions = ["Set", "List"]
+    tenant_id = data.azurerm_client_config.current.tenant_id
+    // object_id          = data.external.user.result.id
+    object_id = data.azuread_client_config.current.object_id
+
+    secret_permissions = var.secret_permissions
   }
 }
 
+resource "random_password" "password" {
+  length  = 16
+  special = true
+}
+
+resource "azurerm_key_vault_secret" "thissecret" {
+  key_vault_id = azurerm_key_vault.vault.id
+  name         = "mysecret"
+  value        = random_password.password.result
+
+}
