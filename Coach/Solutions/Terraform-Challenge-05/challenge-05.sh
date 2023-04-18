@@ -5,6 +5,5 @@ terraform init
 terraform validate
 terraform plan
 terraform output 
-terraform state list
 
 
