@@ -41,7 +41,8 @@ The challenges build upon each other incrementally. You will start by creating b
 - Challenge 6: **[Terraform Modules](./Student/Terraform-Challenge-06.md)**
    - Learn how create resusable modules for granular resource management
  - Challenge 7: **Azure Container Apps (ACA)**  _to be created_
- 	- Create an ACA cluster and deploy an application to it
+ 	- Create an ACA cluster and deploy a simple `hello world` application to it
+ - 
 - Challenge 8: **App Gateway** _to be created_
 	- Create an App Gateway as a front end into your ACA-hosted application
    
