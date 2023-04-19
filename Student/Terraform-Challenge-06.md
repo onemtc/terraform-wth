@@ -1,10 +1,10 @@
-# Challenge 6 - Bicep Modules
+# Challenge 6 - Terraform Modules
 
 [< Previous Challenge](./Terraform-Challenge-05.md) - [Home](../README.md) - [Next Challenge >](./Terraform-Challenge-07.md)
 
 ## Introduction
 
-The goals for this challenge include understanding how Terraform modules allow for granular resource management and deployment, and support separation of dutues.
+The goals for this challenge include understanding how Terraform modules allow for granular resource management and deployment, and support separation of duties.
 
 An application may require the composition of many underlying infrastructure resources in Azure. As you have now seen with just a single VM and its dependencies, a Terraform manifest can grow large rather quickly.
 
