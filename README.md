@@ -28,10 +28,6 @@ The challenges build upon each other incrementally. You will start by creating b
 
 - Challenge 0: **[Pre-Requisites - Ready, Set, Go!](./Student/Terraform-Challenge-00.md)**
    - Prepare your workstation to work with Azure & Terraform
-
----
-
-
 - Challenge 1: **[Basic Terraform](./Student/Terraform-Challenge-01.md)**
    - Develop a simple Terraform manifest that takes inputs to create an Azure Storage Account, and returns outputs
 - Challenge 2: **[Terraform expressions and referencing resources](./Student/Terraform-Challenge-02.md)**
@@ -44,9 +40,13 @@ The challenges build upon each other incrementally. You will start by creating b
    - Create a complex deployment with multiple dependencies
 - Challenge 6: **[Terraform Modules](./Student/Terraform-Challenge-06.md)**
    - Learn how create resusable modules for granular resource management
+ - Challenge 7: **Azure Container Apps (ACA)**  _to be created_
+ 	- Create an ACA cluster and deploy an application to it
+- Challenge 8: **App Gateway** _to be created_
+	- Create an App Gateway as a front end into your ACA-hosted application
    
-   
-   
+------
+OLD / Remove:
 - Challenge 7: **[Configure VM to run a Web Server](./Student/Bicep-Challenge-07.md)**
    - Learn about custom script extensions
 - Challenge 8: **[Deploy a Virtual Machine Scale Set](./Student/Bicep-Challenge-08.md)**
