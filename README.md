@@ -61,7 +61,7 @@ You will want to prepare your machine with the following to help complete the Ch
 
 ## Repository Contents 
 - `../Student`
-  - Bicep challenges
+  - Terraform challenges
 - `../Student/Resources`
   - Shell scripts needed to complete the challenges
 
