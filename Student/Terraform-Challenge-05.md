@@ -36,5 +36,6 @@ The goals for this challenge include understanding:
 ## Learning Resources
 
 + [Quickstart: Use Terraform to create a Linux VM](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-terraform)
++ [azurerm_linux_virtual_machine](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_virtual_machine)
 + [tls_private_key - used to create ssh keys](https://registry.terraform.io/providers/hashicorp/tls/latest/docs/resources/private_key)
 + [Virtual Machine - Azure Resource Manager reference](https://learn.microsoft.com/azure/templates/microsoft.compute/virtualmachines)

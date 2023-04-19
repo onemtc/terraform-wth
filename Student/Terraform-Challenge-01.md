@@ -12,7 +12,7 @@ The goals for this challenge include understanding:
 
 - Understanding Terraform basics:  init, plan, apply, and state
 - Setting up Terraform authentication with Azure
-- How to author Terraform manifest using HCL
+- How to author Terraform manifests using HCL
 
 In this challenge, you will create a simple Terraform manifest and deploy it to Azure.  You will save Terraform state in an Azure Storage account
 

@@ -6,7 +6,7 @@
 
 The goals for this challenge include understanding:
 
-- How to create a set of resources based on a list or count (loops)
+- How to create a set of resources based on a list or count (loops), eg iteration
 
 ## Challenges
 
