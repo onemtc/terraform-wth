@@ -38,31 +38,14 @@ The challenges build upon each other incrementally. You will start by creating b
    - Create and reference an Azure Key Vault
 - Challenge 5: **[Deploy a Virtual Machine](./Student/Terraform-Challenge-05.md)**
    - Create a complex deployment with multiple dependencies
-- Challenge 6: **[Terraform Modules](./Student/Terraform-Challenge-06.md)**
-   - Learn how create resusable modules for granular resource management
+- Challenge 6: **[Terraform Modules](./Student/Terraform-Challenge-06.md)**  
+   - Learn how create reusable modules for granular resource management
  - Challenge 7: **Azure Container Apps (ACA)**  _to be created_
  	- Create an ACA cluster and deploy a simple `hello world` application to it
- - 
-- Challenge 8: **App Gateway** _to be created_
-	- Create an App Gateway as a front end into your ACA-hosted application
-   
-------
-OLD / Remove:
-- Challenge 7: **[Configure VM to run a Web Server](./Student/Bicep-Challenge-07.md)**
-   - Learn about custom script extensions
-- Challenge 8: **[Deploy a Virtual Machine Scale Set](./Student/Bicep-Challenge-08.md)**
-   - Create complex deployment with Bicep using modules
-- Challenge 9: **[Configure VM Scale Set to run a Web Server](./Student/Bicep-Challenge-09.md)**
-   - Learn about custom script extensions with VM Scale Sets
-- Challenge 10: **[Configure VM Scale Set to run a Web Server using cloud-init](./Student/Bicep-Challenge-10.md)**
-   - How cloud-init scripts can be run on a Virtual Machine Scale Set (VMSS)
-- Challenge 11: **[Deploy resources to different scopes](./Student/Bicep-Challenge-11.md)**
-   - Learn how to deploy resources to different scopes   
-- Challenge 20: **[Deploy an Azure App Service](./Student/Bicep-Challenge-20.md)**
-   - Learn how to an Azure App Service & deploy an app to it   
-- Challenge 21: **[Deploy an AKS cluster](./Student/Bicep-Challenge-21.md)**
-   - Learn how to an AKS cluster & deploy an app to it   
-
+ - Challenge 8: **Advanced ACA**  _to be created_
+   - Provision an Azure container registry, deploy a container app to it, then provision and deploy a multi-microservice (frontend and backend) containerized application
+- Challenge 9: **App Gateway** _to be created_
+	- Create an App Gateway with a web application firewall and use it to front end your ACA-hosted application
 
 
 
@@ -73,11 +56,8 @@ You will want to prepare your machine with the following to help complete the Ch
 * Azure Subscription
 * _optional_ [Windows Subsystem for Linux (Windows 10-only)](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
 * [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
-* [PowerShell Cmdlets for Azure](https://docs.microsoft.com/en-us/powershell/azure/?view=azps-5.6.0)
 * [Visual Studio Code](https://code.visualstudio.com/)
-* Bicep plugins for VS Code
-	* [Bicep VS Code Extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep)
-	* [Bicep CLI](https://github.com/Azure/bicep/blob/main/docs/installing.md)
+
 
 ## Repository Contents 
 - `../Student`
@@ -85,13 +65,3 @@ You will want to prepare your machine with the following to help complete the Ch
 - `../Student/Resources`
   - Shell scripts needed to complete the challenges
 
-## Contributors
-
-- Victor Viriya-ampanond
-- William Salazar 
-- Peter Laudati
-- Pete Rodriguez
-- Tim Sullivan
-- Mark Garner
-- Jesse Mrasek
-- Andy Huang

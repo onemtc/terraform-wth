@@ -1,17 +1,14 @@
 # Challenge 6 - Bicep Modules
 
-[< Previous Challenge](./Bicep-Challenge-05.md) - [Home](../README.md) - [Next Challenge >](./Bicep-Challenge-07.md)
+[< Previous Challenge](./Terraform-Challenge-05.md) - [Home](../README.md) - [Next Challenge >](./Terraform-Challenge-07.md)
 
 ## Introduction
 
-The goals for this challenge include understanding:
+The goals for this challenge include understanding how Terraform modules allow for granular resource management and deployment, and support separation of dutues.
 
-- Bicep modules allow for granular resource management and deployment
-- How Bicep modules can support separation of duties
+An application may require the composition of many underlying infrastructure resources in Azure. As you have now seen with just a single VM and its dependencies, a Terraform manifest can grow large rather quickly.
 
-An application may require the composition of many underlying infrastructure resources in Azure. As you have now seen with just a single VM and its dependencies, an ARM template can grow large rather quickly.
-
-Bicep introduces the concept of *modules*. These are similar to linked templates but are much simpler to work with. When you write a Bicep file you can call another Bicep file as a module. When your template is transpiled into JSON, a single ARM template is produced including the code from your module(s).
+Terraform supports the concept of [*modules*](https://developer.hashicorp.com/terraform/language/modules). When you write a Bicep file you can call another Bicep file as a module. When your template is transpiled into JSON, a single ARM template is produced including the code from your module(s).
 
 When templates get big, they become monoliths. They are hard to manage.  By breaking your templates up into smaller modules, you can achieve more flexibility in how you manage your deployments.
 
@@ -21,7 +18,13 @@ The network architecture and security groups are typically stable and do not cha
 
 ## Challenge
 
-In this challenge you will separate your existing Bicep template deployment into two modules.
+In this challenge you will separate your existing Terraform manifests deployment into modules
+
+- Move the VM and its dependencies (VM, NIC, public-ip) into their own module. (eg move into a subdirectory).  
+    - The module should take the following inputs: `resource group, location, vnname, admin username, ssh public key, subnet id`
+    - The module should output: `vm_public_ip_address`
+- Move the vnet, subnet, and NSG definitions into their own module.  The module should take the following parameters:
+    - `resource group, location, vnet name, address space, subnet name, subnet address prefix`
 
 - Separate networking resources (Virtual Network and Network Security Group) into their own module.
 - Separate the VM and its dependencies into their own module.
@@ -36,5 +39,6 @@ By separating the networking resources into their own modules, an application te
 
 ## Learning Resources
 
-- [Use Bicep modules](https://learn.microsoft.com/azure/azure-resource-manager/bicep/modules)
+- [Learn Terraform modules](https://developer.hashicorp.com/terraform/tutorials/modules/module)
+- [Azure Terraform Verified Modules](https://github.com/Azure/terraform-azure-modules)
 - [Using linked and nested ARM Templates with JSON when deploying Azure resources](https://learn.microsoft.com/azure/azure-resource-manager/templates/linked-templates?tabs=azure-powershell) - Read this to appreciate how much Bicep improves upon the complexity of linked templates with ARM Templates with JSON.
