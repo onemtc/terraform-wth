@@ -11,7 +11,9 @@ jobs:
     #- uses: actions/checkout@v3
     - name: Clone source repo
       run: git clone https://github.com/Azure-Samples/dotNET-FrontEnd-to-BackEnd-on-Azure-Container-Apps storefront
-    - run: ls -l
+    - run: |
+        ls -l
+        ls -l storefront/src
   # Build storage image
     - name: Build the store image
-      run: docker build storefront/src/store --file Dockerfile --tag store:latest
+      run: docker build storefront/src/Store --file Dockerfile --tag store:latest
