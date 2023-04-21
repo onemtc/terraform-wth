@@ -3,11 +3,9 @@ name: Docker Image CI
 on:
   workflow_dispatch:
 
-
 env:
   REGISTRY: ghcr.io
   REPO: ${{ github.repository }}
-
 
 jobs:
   build:
@@ -15,9 +13,7 @@ jobs:
     permissions:
       contents: read
       packages: write
-
     steps:
-
     - name: Log in to the Container registry 
       uses: docker/login-action@v2
       with:
@@ -25,12 +21,10 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-    #- uses: actions/checkout@v3
     - name: Clone source repo
       run: git clone https://github.com/Azure-Samples/dotNET-FrontEnd-to-BackEnd-on-Azure-Container-Apps storefront
- 
-  
-  # Build storefront UI image
+   
+    # Build storefront UI image
     - name: Create metadata (tags, labels) for Docker
       id: metastore
       uses: docker/metadata-action@v4
