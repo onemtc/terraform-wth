@@ -6,6 +6,8 @@ on:
 
 env:
   REGISTRY: ghcr.io
+  REPO: ${{ github.repository }}
+
 
 jobs:
   build:
@@ -29,11 +31,11 @@ jobs:
  
   
   # Build storefront UI image
-    - name: Extract metadata (tags, labels) for Docker
+    - name: Create metadata (tags, labels) for Docker
       id: metastore
       uses: docker/metadata-action@v4
       with:
-        images: ${{ env.REGISTRY }}/storefront
+        images: ${{ env.REGISTRY }}/${{env.REPO}}/storefront
         flavor: latest=true 
 
     - name: Build and push storefront image
