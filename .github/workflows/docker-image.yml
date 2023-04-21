@@ -47,7 +47,37 @@ jobs:
         tags: ${{ steps.metastore.outputs.tags }}
         labels: ${{ steps.metastore.outputs.labels }}
   
-    #- name: Build the storefront image
-      # run: |
-      #   cd storefront/src
-      #   docker build . --file Store/Dockerfile --tag store:latest
+  # Build inventory API image
+    - name: Create inventory metadata (tags, labels) for Docker
+      id: metainventory
+      uses: docker/metadata-action@v4
+      with:
+        images: ${{ env.REGISTRY }}/${{env.REPO}}/inventory
+        flavor: latest=true 
+
+    - name: Build and push inventory api image
+      uses: docker/build-push-action@v4
+      with:
+        context: storefront/src
+        file: storefront/src/Store.InventoryApi/Dockerfile
+        push: true
+        tags: ${{ steps.metainventory.outputs.tags }}
+        labels: ${{ steps.metainventory.outputs.labels }}
+
+
+  # Build product API image
+    - name: Create product metadata (tags, labels) for Docker
+      id: metaproduct
+      uses: docker/metadata-action@v4
+      with:
+        images: ${{ env.REGISTRY }}/${{env.REPO}}/product
+        flavor: latest=true 
+
+    - name: Build and push product api image
+      uses: docker/build-push-action@v4
+      with:
+        context: storefront/src
+        file: storefront/src/Store.InventoryApi/Dockerfile
+        push: true
+        tags: ${{ steps.metaproduct.outputs.tags }}
+        labels: ${{ steps.metaproduct.outputs.labels }}
