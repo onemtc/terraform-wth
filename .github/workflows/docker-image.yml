@@ -3,17 +3,49 @@ name: Docker Image CI
 on:
   workflow_dispatch:
 
+
+env:
+  REGISTRY: ghcr.io
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
 
     steps:
+
+    - name: Log in to the Container registry 
+      uses: docker/login-action@v2
+      with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
     #- uses: actions/checkout@v3
     - name: Clone source repo
       run: git clone https://github.com/Azure-Samples/dotNET-FrontEnd-to-BackEnd-on-Azure-Container-Apps storefront
-    - run: |
-        ls -l
-        ls -l storefront/src
-  # Build storage image
-    - name: Build the store image
-      run: docker build storefront/src/Store --file Dockerfile --tag store:latest
+ 
+  
+  # Build storefront UI image
+    - name: Extract metadata (tags, labels) for Docker
+      id: metastore
+      uses: docker/metadata-action@v4
+      with:
+        images: ${{ env.REGISTRY }}/storefront
+        tags: latest
+
+    - name: Build and push storefront image
+      uses: docker/build-push-action@v4
+      with:
+        context: storefront/src
+        file: storefront/src/Store/Dockerfile
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+  
+    #- name: Build the storefront image
+      # run: |
+      #   cd storefront/src
+      #   docker build . --file Store/Dockerfile --tag store:latest
