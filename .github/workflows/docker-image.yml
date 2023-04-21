@@ -42,8 +42,8 @@ jobs:
         context: storefront/src
         file: storefront/src/Store/Dockerfile
         push: true
-        tags: ${{ steps.meta.outputs.tags }}
-        labels: ${{ steps.meta.outputs.labels }}
+        tags: ${{ steps.metastore.outputs.tags }}
+        labels: ${{ steps.metastore.outputs.labels }}
   
     #- name: Build the storefront image
       # run: |
