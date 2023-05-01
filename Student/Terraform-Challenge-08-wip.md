@@ -14,8 +14,19 @@ We will also explore the Terraform concept of "layered state files", where share
 
 **Challenge Part 1**:  In this first part of this challenge, we are going to deploy an Azure Container registry and use it to build our container images.
 
-First, create a new sub-folder within your working directory (eg, `acr`) and cd into it.  This will be used to host the code for your ACR definituiobn
+First, create a new sub-folder within your working directory (eg, `acr`) and cd into it.  This will be used to host the code for your ACR definition.
 
+Next, within this folder, create the appropriate Terraform manifest definitions to deploy an [Azure Container Registry (ACR)(https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_registry).
++ Deploy this to a different state file!  You can use the existing Storage Account and Blob Container, but use a (new) different key from your existing state file
++ Enable an [admin user](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_registry#admin_enabled) on this ACR, and output both the admin_username and admin_password as your outputs.  (_Yes, you would **never** output the admin_password in a real-world scenario._)
+
+Once your container registry has been created, you'll need to import two container images to it.  As this is an _imperative_ operation, we'll use the Azure az cli to perform this task rather than terraform.  Run the following commands:
++ `az acr import --name <your registry name> --source ghcr.io/onemtc/terraform-wth/storefront:latest --image hello-world:latest
+
+
+**Challenge Part 2**:  In the next part of the challenge
+
+---------------------------------------------------------------------------------------------------------------
 In this challenge you will write Bicep files that make use of modules to achieve the following:
 
 - Separate networking resources (Virtual Network & Network Security Groups) into their own Bicep file.
