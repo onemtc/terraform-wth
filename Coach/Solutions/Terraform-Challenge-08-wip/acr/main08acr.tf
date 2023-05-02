@@ -28,7 +28,7 @@ variable "imagenames" {
 module "importimage" {
   count = length(var.imagenames)
 
-  source = "github.com/onemtc/terraform-wth/tree/main/modules/importimage"
+  source = "github.com/onemtc/terraform-wth/modules/importimage"
   acrid = azurerm_container_registry.acr.id
   imagename = var.imagenames[count.index]
 }

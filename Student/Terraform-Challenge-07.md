@@ -18,7 +18,7 @@ It is recommended that you start fresh for this challenge and use a new set of T
 + Deploy an [Azure Container Apps Environment](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app_environment) using Terraform.
     - You will be required to deploy a Log Analytics Workspace to support this ACA Environment
 + Deploy an [Azure Container App](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_app) based on the "hello-world" container `mcr.microsoft.com/azuredocs/containerapps-helloworld:latest`
-    - You will need to configure an ingress to be able to access this container from the outside (eg, Internet)
+    - You will need to configure an ingress to be able to access this app from the outside (eg, Internet)
 + Define a Terraform output that shows the Container FQDN.
 
 ## Success Criteria

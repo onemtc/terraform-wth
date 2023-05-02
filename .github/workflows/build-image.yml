@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Build and push to GitHub Container Registry
 
 on:
   workflow_dispatch:
@@ -71,7 +71,7 @@ jobs:
       uses: docker/build-push-action@v4
       with:
         context: storefront/src
-        file: storefront/src/Store.InventoryApi/Dockerfile
+        file: storefront/src/Store.ProductApi/Dockerfile
         push: true
         tags: ${{ steps.metaproduct.outputs.tags }}
         labels: ${{ steps.metaproduct.outputs.labels }}
