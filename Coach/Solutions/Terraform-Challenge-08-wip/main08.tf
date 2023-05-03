@@ -61,7 +61,6 @@ resource "azurerm_container_app" "storefront" {
   template {
     container {
       name = "storefront"
-      // image  = "mcr.microsoft.com/azuredocs/containerapps-helloworld:latest"
       image  = "${data.azurerm_container_registry.myacr.login_server}/storefront:latest"
       cpu    = 0.25
       memory = "0.5Gi"
@@ -89,7 +88,7 @@ resource "azurerm_container_app" "inventory" {
   resource_group_name          = azurerm_resource_group.tfchallenge.name
   revision_mode                = "Single"
   ingress {
-    external_enabled = true
+    external_enabled = false
     transport        = "auto"
     target_port      = 80
     traffic_weight {
@@ -109,9 +108,8 @@ resource "azurerm_container_app" "inventory" {
   template {
     container {
       name = "inventory"
-      // image  = "mcr.microsoft.com/azuredocs/containerapps-helloworld:latest"
-      //image  = "${data.azurerm_container_registry.myacr.login_server}/inventory:latest"
-      image  = "ghcr.io/onemtc/terraform-wth/inventory:latest"
+      image  = "${data.azurerm_container_registry.myacr.login_server}/inventory:latest"
+      // image  = "ghcr.io/onemtc/terraform-wth/inventory:latest"
 
       cpu    = 0.25
       memory = "0.5Gi"
@@ -130,7 +128,7 @@ resource "azurerm_container_app" "product" {
   resource_group_name          = azurerm_resource_group.tfchallenge.name
   revision_mode                = "Single"
   ingress {
-    external_enabled = true
+    external_enabled = false
     transport        = "auto"
     target_port      = 80
     traffic_weight {
@@ -150,9 +148,8 @@ resource "azurerm_container_app" "product" {
   template {
     container {
       name = "product"
-      // image  = "mcr.microsoft.com/azuredocs/containerapps-helloworld:latest"
-      // image  = "${data.azurerm_container_registry.myacr.login_server}/product:latest"
-      image  = "ghcr.io/onemtc/terraform-wth/product:latest"
+      image  = "${data.azurerm_container_registry.myacr.login_server}/product:latest"
+      // image  = "ghcr.io/onemtc/terraform-wth/product:latest"
       cpu    = 0.25
       memory = "0.5Gi"
       env {
@@ -162,15 +159,6 @@ resource "azurerm_container_app" "product" {
     }
   }
 }
-
-
-
-
-
-
-
-
-
 
 
 output "storefrontfqdn" {
