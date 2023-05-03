@@ -23,12 +23,13 @@ resource "azurerm_container_registry" "acr" {
 
 variable "imagenames" {
   type = list(string)
-  default = [ "storefront", "product", "inventory" ]
+  default = ["erjosito/yadaweb:1.0", "erjosito/yadaapi:1.0"]
 }
 module "importimage" {
   count = length(var.imagenames)
 
   source = "github.com/onemtc/terraform-wth/modules/importimage"
-  acrid = azurerm_container_registry.acr.id
+  // source    = "../../../../modules/importimage"
+  acrid     = azurerm_container_registry.acr.id
   imagename = var.imagenames[count.index]
 }
