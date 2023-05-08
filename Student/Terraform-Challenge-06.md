@@ -26,11 +26,6 @@ In this challenge you will separate your existing Terraform manifests deployment
 - Move the vnet, subnet, and NSG definitions into their own module.  The module should take the following parameters:
     - `resource group, location, vnet name, address space, subnet name, subnet address prefix`
 
-- Separate networking resources (Virtual Network and Network Security Group) into their own module.
-- Separate the VM and its dependencies into their own module.
-- Create a new Bicep template that deploys each of the new modules.
-- Ensure parameters flow through from the new template to each of the modules.
-
 By separating the networking resources into their own modules, an application team can test its infrastructure deployment in a test network. At a later point in time, the networking module can be replaced with a production module provided by the company's operations team.
 
 ## Success Criteria
@@ -41,4 +36,4 @@ By separating the networking resources into their own modules, an application te
 
 - [Learn Terraform modules](https://developer.hashicorp.com/terraform/tutorials/modules/module)
 - [Azure Terraform Verified Modules](https://github.com/Azure/terraform-azure-modules)
-- [Using linked and nested ARM Templates with JSON when deploying Azure resources](https://learn.microsoft.com/azure/azure-resource-manager/templates/linked-templates?tabs=azure-powershell) - Read this to appreciate how much Bicep improves upon the complexity of linked templates with ARM Templates with JSON.
+

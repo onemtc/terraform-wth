@@ -1,10 +1,10 @@
-# Challenge 5 - Deploy a Virtual Machine (Optional)
+# Challenge 5 - Deploy a Virtual Machine
 
 [< Previous Challenge](./Terraform-Challenge-04.md) - [Home](../README.md) - [Next Challenge >](./Terraform-Challenge-06.md)
 
 ## Introduction
 
-In this (optional) challenge, you will put all the pieces together and extend your Terraform manifests to deploy a Virtual Machine in Azure.
+In this challenge, you will put all the pieces together and extend your Terraform manifests to deploy a Virtual Machine in Azure.
 
 The goals for this challenge include understanding:
 
