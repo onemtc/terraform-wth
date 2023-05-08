@@ -1,6 +1,6 @@
 # Challenge 8 - Advanced Azure Container Apps (ACA)
 
-[< Previous Challenge](./Terraform-Challenge-07.md) - [Home](../README.md) - [Next Challenge>](./Terraform-Challenge-09.md)
+[< Previous Challenge](./Terraform-Challenge-07.md) - [Home](../README.md) 
 
 ## Introduction
 In the prior challenge, we ran a very simple example of using ACA to host a hello-world app.

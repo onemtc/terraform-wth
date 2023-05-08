@@ -4,6 +4,4 @@
 
 ## Notes & Guidance
 
-Challenge 3 notes coming soon...
-
-See solution example and `challenge-03.sh`
+Please review the solution in the Solutions folder.
