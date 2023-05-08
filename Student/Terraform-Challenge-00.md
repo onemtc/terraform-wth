@@ -19,7 +19,6 @@ In this challenge, we'll be setting up all the tools we will need to complete ou
   - [Visual Studio Code](https://code.visualstudio.com/)
       - [Hashicorp Terraform extension for VS Code](https://marketplace.visualstudio.com/items?itemName=hashicorp.terraform)
       - [Azure Terraform extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureterraform)
-      - [Terraform AzApi Provider](https://marketplace.visualstudio.com/items?itemName=azapi-vscode.azapi)
 
 
 **Part 2: Hello World**
