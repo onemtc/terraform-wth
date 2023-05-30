@@ -11,9 +11,9 @@ We will also explore the Terraform concept of "layered state files", where share
 
 ## Challenges
 
-**Challenge Part 1**:  In this first part of this challenge, we are going to deploy an Azure Container Registry (ACR) and and import some images to it.  This ACR will be governed using a separate state file from the one we've been using for our other resources.  This is a common pattern in Terraform, where you have shared infrastructure components that are deployed and managed separately from your application workloads.
+**Challenge Part 1**:  In this first part of this challenge, we are going to deploy an Azure Container Registry (ACR) and import images to it.  This ACR will be governed using a separate state file from the one we've been using for our other resources.  This is a common pattern in Terraform, where you have shared infrastructure components that are deployed and managed separately from your application workloads.
 
-First, create a new sub-folder within your working directory (eg, `acr`) and cd into it.  This will be used to host the code for your ACR definition.
+First, create a new sub-folder within your working directory (eg, call it `acr`) and cd into it.  This will be used to host the code for your ACR definition.
 
 Next, within this folder, create the appropriate Terraform manifest definitions to deploy an [Azure Container Registry (ACR)](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/container_registry).
 + Deploy this to a different state file!  You can use the existing Storage Account and Blob Container, but use a (new) different key from your existing state file.  This will allow you to manage the ACR separately from the rest of your resources.
@@ -65,11 +65,11 @@ Hint:  To define environment variables within the ACA definition in Terraform, y
   template {
     container {
       env {
-        name  = "varable1"
+        name  = "variable1"
         value = "value1"
       }
       env {
-        name  = "varable2"
+        name  = "variable2"
         value = "value2"
       }
       [...]
@@ -86,6 +86,6 @@ Hint:  To define environment variables within the ACA definition in Terraform, y
   - Shows connectivity info for application tier
 3. API tier is not accessable from the Internet.
 
-Note that the links under `Direct Access to API` will not work.  We will configure this in the next challenge.
+Note that the links under `Direct Access to API` will not work.  As an advanced exercise, you could provision an App Gateway in front of your ACA environment to enable routing to these URLS.  But that is beyond the scope of this exercise.
 
 
