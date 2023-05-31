@@ -44,8 +44,7 @@ The challenges build upon each other incrementally. You will start by creating b
    - Create an ACA environment and deploy a simple `hello world` application to it
  - Challenge 8: **[Advanced ACA](./Student/Terraform-Challenge-08.md)**
    - Provision an Azure container registry, import images to it, then provision and deploy a multi-microservice (frontend and backend) containerized application
-- Challenge 9: **App Gateway** _work in progress_
-	- Create an App Gateway with a web application firewall and use it to front end your ACA-hosted application
+
 
 
 
