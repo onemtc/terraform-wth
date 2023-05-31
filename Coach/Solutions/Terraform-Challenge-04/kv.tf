@@ -18,7 +18,7 @@ variable "kv_sku_name" {
 variable "secret_permissions" {
   type        = list(string)
   description = "List of secret permissions."
-  default     = ["Set", "Get", "List"]
+  default     = ["Set", "Get", "List", "Delete", "Purge"]
 }
 
 resource "azurerm_key_vault" "vault" {
