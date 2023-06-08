@@ -18,7 +18,7 @@ In this challenge, you will create an Azure Key Vault and store a secret in it. 
 
 + Create an Azure Key Vault using [azurerm_key_vault](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault)
   + Note:  Keyvaults require a unique name in Azure.  Append your random suffix to the Keyvault name to ensure your name is unique. 
-+ Using the [azurerm_key_vault_key](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_key) resource provider, create a key called `mysecret` with a [random password](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) and store it in the keyvault.
++ Using the [azurerm_key_vault_secret](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/key_vault_secret) resource provider, create a secret called `mysecret` with a [random password](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) and store it in the keyvault.
 + Explore the terraform state using the `terraform state list` and `terraform state show` commands to view the state objects and specifically the secret that was created by your manifests
   + Discuss with your coach: What are the implications of the secret being stored in Terraform's state file?
 
