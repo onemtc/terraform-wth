@@ -5,16 +5,8 @@ resource "random_string" "suffix" {
   upper   = false
 }
 
-# Create public IP
-resource "azurerm_public_ip" "vmpip" {
-  name                = "vmPublicIP${random_string.suffix.result}"
-  location            = var.location
-  resource_group_name = var.rg
-  allocation_method   = "Dynamic"
-}
-
 # Create network interface
-resource "azurerm_network_interface" "vm_nic" {
+resource "azurerm_network_interface" "vmnic" {
   name                = "vmNIC${random_string.suffix.result}"
   location            = var.location
   resource_group_name = var.rg
@@ -23,12 +15,11 @@ resource "azurerm_network_interface" "vm_nic" {
     name                          = "vm_nic_configuration"
     subnet_id                     = var.subnet_id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id          = azurerm_public_ip.vmpip.id
   }
 }
 
 # Create virtual machine
-resource "azurerm_linux_virtual_machine" "my_terraform_vm" {
+resource "azurerm_linux_virtual_machine" "vm" {
   name                  = var.vmname
   location              = var.location
   resource_group_name   = var.rg

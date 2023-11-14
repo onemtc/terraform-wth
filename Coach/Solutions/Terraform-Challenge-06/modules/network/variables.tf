@@ -10,9 +10,16 @@ variable "vnet_name" {
 variable "address_space" {
   type = list(string)
 }
-variable "subnet_name" {
+variable "vm_subnet_name" {
   type = string
 }
-variable "subnet_addr_prefix" {
+variable "vm_subnet_addr_prefix" {
   type = list(string)
 }
+variable "bastion_subnet_addr_prefix" {
+  type = list(string)
+}
+variable "bastion_host_name" {
+  type = string
+}
+

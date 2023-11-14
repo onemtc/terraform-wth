@@ -20,20 +20,25 @@ The network architecture and security groups are typically stable and do not cha
 
 In this challenge you will separate your existing Terraform manifests deployment into modules
 
-- Move the VM and its dependencies (VM, NIC, public-ip) into their own module. (eg move into a subdirectory).  
-    - The module should take the following inputs: `resource group, location, vnname, admin username, ssh public key, subnet id`
-    - The module should output: `vm_public_ip_address`
-- Move the vnet, subnet, and NSG definitions into their own module.  The module should take the following parameters:
-    - `resource group, location, vnet name, address space, subnet name, subnet address prefix`
+- Move the VM and its dependencies (VM, NIC) into their own module. (eg move into a subdirectory).  
+    - The module should take the following inputs: `resource group, location, vm name, admin username, ssh public key, subnet id`
+    - The module should output: `vm_host_name`
+- Move the vnet, subnets, and bastion host definitions into their own module.  The module should take the following parameters:
+    - `resource group, location, vnet name, address space, subnet names, subnet address prefixes`
+    - The module should output: `vm_subnet_id`
+- Move the keyvault into its own module. The moduel should take the following parameters:
+    - `resource group, location, vault name prefix`
+    - The module should output: `vault_id`
 
 By separating the networking resources into their own modules, an application team can test its infrastructure deployment in a test network. At a later point in time, the networking module can be replaced with a production module provided by the company's operations team.
 
 ## Success Criteria
 
-1. Verify that all resources deploy as before when you had a single Bicep template.
+1. Verify that all resources deploy as before when you had a single terraform file ***WITHOUT ANY CHANGES.***
 
 ## Learning Resources
 
 - [Learn Terraform modules](https://developer.hashicorp.com/terraform/tutorials/modules/module)
 - [Azure Terraform Verified Modules](https://github.com/Azure/terraform-azure-modules)
+- [Use Configuration to Move Resources](https://developer.hashicorp.com/terraform/tutorials/configuration-language/move-config)
 

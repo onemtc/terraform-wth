@@ -21,10 +21,16 @@ variable "secret_permissions" {
   default     = ["Set", "Get", "List", "Delete", "Purge", "Recover"]
 }
 
+resource "random_string" "suffix" {
+  length  = 4
+  special = false
+  upper   = false
+}
+
 resource "azurerm_key_vault" "vault" {
   name                       = "${var.vaultnameprefix}${random_string.suffix.result}"
-  resource_group_name        = azurerm_resource_group.tfchallenge.name
-  location                   = azurerm_resource_group.tfchallenge.location
+  resource_group_name        = var.rg
+  location                   = var.location
   tenant_id                  = data.azurerm_client_config.current.tenant_id
   sku_name                   = var.kv_sku_name
   soft_delete_retention_days = 7
@@ -36,9 +42,7 @@ resource "azurerm_key_vault" "vault" {
 
   access_policy {
     tenant_id = data.azurerm_client_config.current.tenant_id
-    // object_id          = data.external.user.result.id
     object_id = data.azuread_client_config.current.object_id
-
     secret_permissions = var.secret_permissions
   }
 }
