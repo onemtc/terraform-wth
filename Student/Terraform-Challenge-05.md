@@ -28,14 +28,15 @@ The goals for this challenge include understanding:
 
 ## Tips
 
-+ It's up to you if you want to start with clean slate set of manifests or if you want to extend your current manifests to include a VM
-+ Note that you will need to create a VNET, subnet, public IP, and NIC in addition to your VM.
-+ You will need to open port 22 in your NSG to be able to ssh to the VM
-+ You will need to supply your VM with a Public IP address or use the Azure Bastion service to connect to it.
++ It's up to you if you want to start with clean slate set of manifests or if you want to extend your current manifests to include a VM.
++ Note that you will need to create a VNET, subnet, and NIC in addition to your VM.
++ You will need to use the Azure Bastion service to connect to your VM.
 
 ## Learning Resources
 
 + [Quickstart: Use Terraform to create a Linux VM](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-terraform)
 + [azurerm_linux_virtual_machine](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/linux_virtual_machine)
++ [azurerm_bastion_host](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/bastion_host)
 + [tls_private_key - used to create ssh keys](https://registry.terraform.io/providers/hashicorp/tls/latest/docs/resources/private_key)
 + [Virtual Machine - Azure Resource Manager reference](https://learn.microsoft.com/azure/templates/microsoft.compute/virtualmachines)
++ [Bastion Host - Azure Resource Manager reference](https://learn.microsoft.com/en-us/azure/templates/microsoft.network/bastionhosts)

@@ -1,50 +1,52 @@
 
 # Create virtual network
-resource "azurerm_virtual_network" "this" {
+resource "azurerm_virtual_network" "vnet" {
   name                = "myVnet"
   address_space       = ["10.0.0.0/16"]
   location            = azurerm_resource_group.tfchallenge.location
   resource_group_name = azurerm_resource_group.tfchallenge.name
 }
 
-# Create subnet
+# Create virtual machine subnet
 resource "azurerm_subnet" "vmsubnet" {
   name                 = "vmSubnet"
   resource_group_name  = azurerm_resource_group.tfchallenge.name
-  virtual_network_name = azurerm_virtual_network.this.name
+  virtual_network_name = azurerm_virtual_network.vnet.name
   address_prefixes     = ["10.0.1.0/24"]
 }
 
-
-# Create public IPs
-resource "azurerm_public_ip" "vm" {
-  name                = "vmPublicIP"
-  location            = azurerm_resource_group.tfchallenge.location
-  resource_group_name = azurerm_resource_group.tfchallenge.name
-  allocation_method   = "Dynamic"
+# Create bastion host subnet
+resource "azurerm_subnet" "bastionsubnet" {
+  name                 = "AzureBastionSubnet"
+  resource_group_name  = azurerm_resource_group.tfchallenge.name
+  virtual_network_name = azurerm_virtual_network.vnet.name
+  address_prefixes     = ["10.0.2.0/24"]
 }
 
-# Create Network Security Group and rule
-resource "azurerm_network_security_group" "vm_nsg" {
-  name                = "vmnsg"
+# Create public IPs
+resource "azurerm_public_ip" "bastionpip" {
+  name                = "bastionPublicIP"
   location            = azurerm_resource_group.tfchallenge.location
   resource_group_name = azurerm_resource_group.tfchallenge.name
+  allocation_method   = "Static"
+  sku                 = "Standard"
+}
 
-  security_rule {
-    name                       = "SSH"
-    priority                   = 1001
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "22"
-    source_address_prefix      = "*"
-    destination_address_prefix = "*"
+# Create bastion host
+resource "azurerm_bastion_host" "bastionhost" {
+  name                   = "myBastionHost"
+  location               = azurerm_resource_group.tfchallenge.location
+  resource_group_name    = azurerm_resource_group.tfchallenge.name
+
+  ip_configuration {
+    name                 = "ipconfig"
+    subnet_id            = azurerm_subnet.bastionsubnet.id
+    public_ip_address_id = azurerm_public_ip.bastionpip.id
   }
 }
 
-# Create network interface
-resource "azurerm_network_interface" "vm_nic" {
+# Create virtual machine network interface
+resource "azurerm_network_interface" "vmnic" {
   name                = "vmNIC"
   location            = azurerm_resource_group.tfchallenge.location
   resource_group_name = azurerm_resource_group.tfchallenge.name
@@ -53,21 +55,8 @@ resource "azurerm_network_interface" "vm_nic" {
     name                          = "vm_nic_configuration"
     subnet_id                     = azurerm_subnet.vmsubnet.id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id          = azurerm_public_ip.vm.id
   }
 }
-
-# Connect the security group to the network interface
-# resource "azurerm_network_interface_security_group_association" "nic2nsg" {
-#   network_interface_id      = azurerm_network_interface.vm_nic.id
-#   network_security_group_id = azurerm_network_security_group.vm_nsg.id
-# }
-
-resource "azurerm_subnet_network_security_group_association" "subnet2nsg" {
-  subnet_id                 = azurerm_subnet.vmsubnet.id
-  network_security_group_id = azurerm_network_security_group.vm_nsg.id
-}
-
 
 # Create (and display) an SSH key
 resource "tls_private_key" "example_ssh" {
@@ -81,7 +70,7 @@ resource "local_sensitive_file" "ssh_private_key" {
 }
 
 # Create virtual machine
-resource "azurerm_linux_virtual_machine" "my_terraform_vm" {
+resource "azurerm_linux_virtual_machine" "vm" {
   name                  = var.vmname
   location              = azurerm_resource_group.tfchallenge.location
   resource_group_name   = azurerm_resource_group.tfchallenge.name
@@ -131,8 +120,4 @@ output "ssh_publickey" {
 output "ssh_private_key" {
   value     = tls_private_key.example_ssh.private_key_pem
   sensitive = true
-}
-
-output "vm_public_ip_address" {
-  value = azurerm_linux_virtual_machine.my_terraform_vm.public_ip_address
 }

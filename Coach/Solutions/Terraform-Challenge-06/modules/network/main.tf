@@ -7,43 +7,47 @@ resource "random_string" "suffix" {
 
 
 # Create virtual network
-resource "azurerm_virtual_network" "this" {
+resource "azurerm_virtual_network" "vnet" {
   name                = var.vnet_name
   address_space       = var.address_space
   location            = var.location
   resource_group_name = var.rg
 }
 
-# Create subnet
+# Create virtual machine subnet
 resource "azurerm_subnet" "vmsubnet" {
-  name                 = var.subnet_name
+  name                 = var.vm_subnet_name
   resource_group_name  = var.rg
-  virtual_network_name = azurerm_virtual_network.this.name
-  address_prefixes     = var.subnet_addr_prefix
+  virtual_network_name = azurerm_virtual_network.vnet.name
+  address_prefixes     = var.vm_subnet_addr_prefix
 }
 
+# Create bastion subnet
+resource "azurerm_subnet" "bastionsubnet" {
+  name                 = "AzureBastionSubnet"
+  resource_group_name  = var.rg
+  virtual_network_name = azurerm_virtual_network.vnet.name
+  address_prefixes     = var.bastion_subnet_addr_prefix
+}
 
-# Create Network Security Group and rule
-resource "azurerm_network_security_group" "vm_nsg" {
-  name                = "vmnsg${random_string.suffix.result}"
+# Create bastion public ip
+resource "azurerm_public_ip" "bastionpip" {
+  name                = "bastionPublicIP${random_string.suffix.result}"
   location            = var.location
   resource_group_name = var.rg
+  allocation_method   = "Static"
+  sku                 = "Standard"
+}
 
-  security_rule {
-    name                       = "SSH"
-    priority                   = 1001
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "22"
-    source_address_prefix      = "*"
-    destination_address_prefix = "*"
+# Create bastion host
+resource "azurerm_bastion_host" "bastionhost" {
+  name                   = var.bastion_host_name
+  location               = var.location
+  resource_group_name    = var.rg
+
+  ip_configuration {
+    name                 = "ipconfig"
+    subnet_id            = azurerm_subnet.bastionsubnet.id
+    public_ip_address_id = azurerm_public_ip.bastionpip.id
   }
 }
-
-resource "azurerm_subnet_network_security_group_association" "subnet2nsg" {
-  subnet_id                 = azurerm_subnet.vmsubnet.id
-  network_security_group_id = azurerm_network_security_group.vm_nsg.id
-}
-

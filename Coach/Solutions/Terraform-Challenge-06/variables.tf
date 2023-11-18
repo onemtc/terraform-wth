@@ -28,3 +28,8 @@ variable "vmname" {
   type    = string
   default = "myVM"
 }
+
+variable "vnetname" {
+  type    = string
+  default = "myVnet"
+}
